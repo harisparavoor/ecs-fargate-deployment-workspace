@@ -1,12 +1,12 @@
 terraform {
-    backend "s3" {
-bucket = "mystatetestfile"
-key = "dev/terraform.tfstate"
-region = "us-east-1"
-profile = "harips"
-encrypt        = true 
-#dynamodb_table = "terraform-lock-table"
-}
+  backend "s3" {
+    bucket  = "mystatetestfile"
+    key     = "dev/terraform.tfstate"
+    region  = "us-east-1"
+    profile = "harips"
+    encrypt = true
+    #dynamodb_table = "terraform-lock-table"
+  }
 }
 /*resource "aws_dynamodb_table" "terraform_locks" {
   name         = "terraform-locks"
