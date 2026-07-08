@@ -132,7 +132,7 @@ jobs:
           esac
 
           echo "Environment: $ENV"
-          echo "Path: $ENV_PATH"
+          echo "Paths: $ENV_PATH"
 
   plan:
     name: Plan - ${{ needs.detect-changes.outputs.env }}
