@@ -147,11 +147,13 @@ jobs:
       - name: Create terraform.tfvars
         shell: bash
         run: |
-          printf '%s' '${{ secrets.TF_VARS }}' > "${{ needs.detect-changes.outputs.path }}/terraform.tfvars"
+          cat > "${{ needs.detect-changes.outputs.path }}/terraform.tfvars" <<'EOF'
+            ${{ secrets.TF_VARS }}
+            EOF
       - name: Display terraform.tfvars
-
         run: |
           cat ${{ needs.detect-changes.outputs.path }}/terraform.tfvars
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
