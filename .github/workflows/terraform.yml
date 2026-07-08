@@ -11,10 +11,10 @@ on:
       - staging
       - main
     paths:
-      - 'infrastructure/**'
+      - "infrastructure/**"
   pull_request:
     paths:
-      - 'infrastructure/**'
+      - "infrastructure/**"
   workflow_dispatch:
 
 jobs:
@@ -47,7 +47,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: '1.5.7'
+          terraform_version: "1.5.7"
 
       - name: Terraform fmt
         run: terraform fmt -check
@@ -90,7 +90,7 @@ jobs:
             path: infrastructure/environments/prod
             branch: refs/heads/main
             environment_name: production
-    if: ${{ github.event_name == 'push' && github.ref == matrix.branch }}
+    if: ${{ github.event_name == 'push' && github.ref_name == matrix.branch }}
     environment: ${{ matrix.environment_name }}
     steps:
       - name: Checkout
@@ -105,7 +105,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: '1.5.7'
+          terraform_version: "1.5.7"
 
       - name: Download plan
         uses: actions/download-artifact@v4
