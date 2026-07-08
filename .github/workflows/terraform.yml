@@ -146,9 +146,10 @@ jobs:
 
       - name: Create terraform.tfvars
         shell: bash
+        env:
+          TF_VARS: ${{ secrets.TF_VARS }}
         run: |
-          cat > "${{ needs.detect-changes.outputs.path }}/terraform.tfvars" <<'EOF'
-            ${{ secrets.TF_VARS }} EOF
+          printf '%s' "$TF_VARS" > "${{ needs.detect-changes.outputs.path }}/terraform.tfvars"
       - name: Display terraform.tfvars
         run: |
           cat ${{ needs.detect-changes.outputs.path }}/terraform.tfvars
