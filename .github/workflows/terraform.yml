@@ -148,8 +148,7 @@ jobs:
         shell: bash
         run: |
           cat > "${{ needs.detect-changes.outputs.path }}/terraform.tfvars" <<'EOF'
-            ${{ secrets.TF_VARS }}
-            EOF
+            ${{ secrets.TF_VARS }} EOF
       - name: Display terraform.tfvars
         run: |
           cat ${{ needs.detect-changes.outputs.path }}/terraform.tfvars
