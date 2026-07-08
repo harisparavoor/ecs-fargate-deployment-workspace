@@ -39,7 +39,7 @@ jobs:
       changed_files: ${{ steps.changed-files.outputs.changed_files }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Fetch all history for proper diff detection
 
