@@ -144,11 +144,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Create terraform.tfvars from secret
-        run: |
-          echo "${{ secrets.TF_VARS }}" > ${{ needs.detect-changes.outputs.path }}/terraform.tfvars
+      - name: Create terraform.tfvars
         shell: bash
+        run: |
+          printf '%s' '${{ secrets.TF_VARS }}' > "${{ needs.detect-changes.outputs.path }}/terraform.tfvars"
       - name: Display terraform.tfvars
+
         run: |
           cat ${{ needs.detect-changes.outputs.path }}/terraform.tfvars
       - name: Configure AWS credentials
@@ -203,13 +204,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Create terraform.tfvars from secret
-        run: |
-          echo "${{ secrets.TF_VARS }}" > ${{ needs.detect-changes.outputs.path }}/terraform.tfvars
+
+      - name: Create terraform.tfvars
         shell: bash
-      - name: Display terraform.tfvars
         run: |
-          cat ${{ needs.detect-changes.outputs.path }}/terraform.tfvars
+          printf '%s' '${{ secrets.TF_VARS }}' > "${{ needs.detect-changes.outputs.path }}/terraform.tfvars"
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
