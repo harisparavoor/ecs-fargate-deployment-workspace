@@ -151,13 +151,7 @@ jobs:
         run: |
           mkdir -p infrastructure/environments/dev
           printf "%s" "$TF_VARS" > infrastructure/environments/dev/terraform.tfvars
-          test -s ${{ needs.detect-changes.outputs.path }}/terraform.tfvars \
-           && echo "tfvars file created ($(wc -l < ${{ needs.detect-changes.outputs.path }}/terraform.tfvars) lines)" \
-           || (echo "tfvars file missing or empty" && exit 1)
-
-      - name: Create var file
-        run: |
-          cat ${{ needs.detect-changes.outputs.path }}/terraform.tfvars
+          terraform fmt infrastructure/environments/dev/terraform.tfvars
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
