@@ -146,13 +146,14 @@ jobs:
 
       - name: Create terraform.tfvars from secret
         run: |
+          mkdir -p ${{ needs.detect-changes.outputs.path }}
+          cat <<EOF > ${{ needs.detect-changes.outputs.path }}/terraform.tfvars
+          ${{ secrets.TF_VARS }}
+           EOF
           test -s ${{ needs.detect-changes.outputs.path }}/terraform.tfvars \
           && echo "tfvars file created ($(wc -l < ${{ needs.detect-changes.outputs.path }}/terraform.tfvars) lines)" \
           || (echo "tfvars file missing or empty" && exit 1)
-        #mkdir -p ${{ needs.detect-changes.outputs.path }}
-        # cat <<EOF > ${{ needs.detect-changes.outputs.path }}/terraform.tfvars
-        # ${{ secrets.TF_VARS }}
-        #  EOF
+
       - name: Create var file
         run: |
           cat ${{ needs.detect-changes.outputs.path }}/terraform.tfvars
