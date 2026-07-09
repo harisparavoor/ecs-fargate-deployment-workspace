@@ -1,7 +1,7 @@
 module "infrastructure" {
-source = "../../"
+  source = "../../"
 
-environment               = var.environment
+  environment             = var.environment
   project_name            = var.project_name
   aws_region              = var.aws_region
   vpc_cidr_block          = var.vpc_cidr_block
@@ -17,3 +17,4 @@ environment               = var.environment
   github_token            = var.github_token
   github_webhook_token    = var.github_webhook_token
   codestar_connection_arn = var.codestar_connection_arn
+}
