@@ -145,14 +145,15 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Create terraform.tfvars from secret
+        shell: bash
+        env:
+          TF_VARS: ${{ secrets.TF_VARS }}
         run: |
-          mkdir -p ${{ needs.detect-changes.outputs.path }}
-          cat <<EOF > ${{ needs.detect-changes.outputs.path }}/terraform.tfvars
-          ${{ secrets.TF_VARS }}
-           EOF
+          mkdir -p infrastructure/environments/dev
+          printf "%s" "$TF_VARS" > infrastructure/environments/dev/terraform.tfvars
           test -s ${{ needs.detect-changes.outputs.path }}/terraform.tfvars \
-          && echo "tfvars file created ($(wc -l < ${{ needs.detect-changes.outputs.path }}/terraform.tfvars) lines)" \
-          || (echo "tfvars file missing or empty" && exit 1)
+           && echo "tfvars file created ($(wc -l < ${{ needs.detect-changes.outputs.path }}/terraform.tfvars) lines)" \
+           || (echo "tfvars file missing or empty" && exit 1)
 
       - name: Create var file
         run: |
