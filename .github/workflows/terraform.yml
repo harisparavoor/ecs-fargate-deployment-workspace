@@ -156,8 +156,8 @@ jobs:
         run: |
           mkdir -p infrastructure/environments/dev
           printf "%s" "$TF_VARS" > infrastructure/environments/dev/terraform.tfvars
-          - name: Format tfvars
-           run: terraform fmt infrastructure/environments/dev/terraform.tfvars
+      - name: Format tfvars
+        run: terraform fmt infrastructure/environments/dev/terraform.tfvars
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
