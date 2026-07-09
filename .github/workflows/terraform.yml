@@ -165,10 +165,10 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: "1.8.0"
+      #- name: Setup Terraform
+      #  uses: hashicorp/setup-terraform@v3
+      #  with:
+      #    terraform_version: "1.8.0"
 
       - name: Display environment info
         run: |
