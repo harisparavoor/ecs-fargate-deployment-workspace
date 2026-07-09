@@ -1,6 +1,6 @@
 provider "aws" {
-  region  = var.aws_region
-  profile = "harips"
+  region = var.aws_region
+  #profile = "harips"
   default_tags {
     tags = {
       Environment = var.environment
