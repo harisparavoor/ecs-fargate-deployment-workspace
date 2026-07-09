@@ -149,7 +149,7 @@ jobs:
         env:
           TF_VARS: ${{ secrets.TF_VARS }}
         run: |
-          printf "%s" "$TF_VARS" > terraform.tfvars
+          printf "%s" "$TF_VARS" > ${{ needs.detect-changes.outputs.path }}/terraform.tfvars
         #mkdir -p ${{ needs.detect-changes.outputs.path }}
         # cat <<EOF > ${{ needs.detect-changes.outputs.path }}/terraform.tfvars
         # ${{ secrets.TF_VARS }}
