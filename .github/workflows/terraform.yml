@@ -150,7 +150,6 @@ jobs:
           cat <<EOF > ${{ needs.detect-changes.outputs.path }}/terraform.tfvars
           ${{ secrets.TF_VARS }}
           EOF
-          shell: bash
       - name: Create var file
         run: |
           cat ${{ needs.detect-changes.outputs.path }}/terraform.tfvars
