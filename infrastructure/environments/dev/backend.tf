@@ -1,9 +1,9 @@
 terraform {
   backend "s3" {
     bucket  = "mystatetestfile"
-    key     = "dev/terraform.tfstate"
+    key     = "ecs/dev/terraform.tfstate"
     region  = "us-east-1"
-    #profile = "harips"
+    profile = "harips"
     encrypt = true
     #dynamodb_table = "terraform-lock-table"
   }
