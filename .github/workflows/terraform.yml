@@ -145,11 +145,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Create terraform.tfvars from secret
+        shell: bash
         run: |
-          mkdir -p ${{ needs.detect-changes.outputs.path }}
-          cat <<EOF > ${{ needs.detect-changes.outputs.path }}/terraform.tfvars
-          ${{ secrets.TF_VARS }}
-          EOF
+          echo "${{ secrets.TF_VARS }}" | base64 --decode > terraform.tfvars
+        # run: |
+        #mkdir -p ${{ needs.detect-changes.outputs.path }}
+        # cat <<EOF > ${{ needs.detect-changes.outputs.path }}/terraform.tfvars
+        # ${{ secrets.TF_VARS }}
+        #  EOF
       - name: Create var file
         run: |
           cat ${{ needs.detect-changes.outputs.path }}/terraform.tfvars
