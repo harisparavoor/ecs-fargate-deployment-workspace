@@ -174,22 +174,22 @@ jobs:
       - name: Terraform fmt
         run: terraform fmt -check
         working-directory: ${{ needs.detect-changes.outputs.path }}
-          echo "✅ Formatting completed"
+          echo "Formatting completed"
 
       - name: Terraform init
         run: terraform init -input=false
         working-directory: ${{ needs.detect-changes.outputs.path }}
-          echo "✅ init completed"
+          echo "init completed"
 
       - name: Terraform validate
         run: terraform validate
         working-directory: ${{ needs.detect-changes.outputs.path }}
-          echo "✅ validate completed"
+          echo "validate completed"
 
       - name: Terraform plan
         run: terraform plan -input=false -out=tfplan
         working-directory: ${{ needs.detect-changes.outputs.path }}
-          echo "✅ plan completed"
+          echo "plan completed"
 
       - name: Upload plan
         uses: actions/upload-artifact@v4
