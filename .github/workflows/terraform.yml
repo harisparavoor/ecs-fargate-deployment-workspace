@@ -146,9 +146,10 @@ jobs:
 
       - name: Create terraform.tfvars from secret
         shell: bash
+        env:
+          TF_VARS: ${{ secrets.TF_VARS }}
         run: |
-          echo "${{ secrets.TF_VARS }}" | base64 --decode > terraform.tfvars
-        # run: |
+          printf "%s" "$TF_VARS" > terraform.tfvars
         #mkdir -p ${{ needs.detect-changes.outputs.path }}
         # cat <<EOF > ${{ needs.detect-changes.outputs.path }}/terraform.tfvars
         # ${{ secrets.TF_VARS }}
