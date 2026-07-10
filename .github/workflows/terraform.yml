@@ -41,11 +41,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-
           fetch-depth: 0
-
-          fetch-depth: 0 # Fetch all history for proper diff detection
-
 
       - name: Get changed files
         id: changed-files
@@ -170,11 +166,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Setup Terraform
-
         uses: hashicorp/setup-terraform@v3  
-
-        uses: hashicorp/setup-terraform@v3
-
         with:
           terraform_version: "1.8.0"
 
@@ -188,23 +180,17 @@ jobs:
         run: terraform fmt -check
         working-directory: ${{ needs.detect-changes.outputs.path }}
 
-
       - name: Display fomat check result
         run: |
           echo "fomat check completed successfully "
-
-
 
       - name: Terraform init
         run: terraform init -input=false
         working-directory: ${{ needs.detect-changes.outputs.path }}
 
-
       - name: Display init check result
         run: |
           echo "init check completed successfully "
-
-
 
       - name: Terraform validate
         run: terraform validate
