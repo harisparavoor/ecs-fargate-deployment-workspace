@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../../terraform-ecs-backend"
+		},
+		{
+			"path": "../../../../terraform-ecs-frontend"
+		}
+	],
+	"settings": {}
+}

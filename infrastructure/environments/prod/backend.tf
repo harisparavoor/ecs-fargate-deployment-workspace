@@ -1,18 +1,13 @@
 terraform {
   backend "s3" {
     bucket  = "mystatetestfile"
-
-    key     = "ecs/dev/terraform.tfstate"
-
-    key     = "dev/terraform.tfstate"
-
+    key     = "ecs/prod/terraform.tfstate"
     region  = "us-east-1"
     profile = "harips"
     encrypt = true
     #dynamodb_table = "terraform-lock-table"
   }
 }
-#file
 /*resource "aws_dynamodb_table" "terraform_locks" {
   name         = "terraform-locks"
   billing_mode = "PAY_PER_REQUEST"

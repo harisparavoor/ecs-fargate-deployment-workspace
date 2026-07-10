@@ -37,12 +37,23 @@ resource "aws_ecs_task_definition" "frontend" {
       {
         name  = "NODE_ENV"
         value = var.environment
+
+      }
+    ]
+    environment = [
+      {
+        name  = "alb_listener_arn"
+        value = var.alb_listener_arn
+      }
+    ]
+
       },
       {
         name  = "alb_listener_arn"
         value = var.alb_listener_arn
       }
     ]
+
   }])
 }
 
@@ -50,7 +61,11 @@ resource "aws_ecs_service" "frontend" {
   name            = "${var.project_name}-${var.environment}-frontend-service"
   cluster         = aws_ecs_cluster.main.id
   task_definition = aws_ecs_task_definition.frontend.arn
+
+  desired_count   = var.environment == "prod" ? 2 : 1
+
   desired_count   = var.environment == "prod" ? 3 : 1
+
   launch_type     = "FARGATE"
 
   network_configuration {
